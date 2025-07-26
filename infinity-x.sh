@@ -70,9 +70,9 @@ echo "Setting up build environment..."
 echo "===================================="
 source build/envsetup.sh
 
-#Building Lineage-20
+# Building Infinity-X
 echo "===================================="
-echo "Building Lineage-20..."
+echo "Building Infinity-X..."
 echo "===================================="
 lunch infinity_chime-user
 mka installclean

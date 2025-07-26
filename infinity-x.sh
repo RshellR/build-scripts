@@ -1,4 +1,4 @@
-#!/bin/bash
+# Infinity-X for Chime
 
 # Remove some stuffs
 rm -rf .repo/local_manifests/ 

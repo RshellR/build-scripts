@@ -64,6 +64,35 @@ mv device.mk.1 device.mk
 
 cd ../../../
 
+
+# Patches
+patch -f -p 1 < wfdservice.rc.patch
+cd packages/modules/Connectivity/ && git reset --hard && cd ../../../
+patch -f -p 1 < InterfaceController.java.patch
+rm -f InterfaceController.java.patch wfdservice.rc.patch strings.xml.*
+rm -f vendor/xiaomi/chime/proprietary/system_ext/etc/init/wfdservice.rc.rej
+rm -f packages/modules/Connectivity/staticlibs/device/com/android/net/module/util/ip/InterfaceController.java.rej
+
+
+cd hardware/xiaomi/
+git reset --hard
+cd ../../
+echo 'diff --git a/vibrator/effect/Android.bp b/vibrator/effect/Android.bp
+index 7cb806b..eaa7f2b 100644
+--- a/hardware/xiaomi/vibrator/effect/Android.bp
++++ b/hardware/xiaomi/vibrator/effect/Android.bp
+@@ -14,8 +14,5 @@ cc_library_shared {
+         "libcutils",
+         "libutils",
+     ],
+-    static_libs: [
+-        "libc++fs",
+-    ],
+     export_include_dirs: ["."],
+ }
+' > hardware_xiaomi.patch
+patch -p 1 -f < hardware_xiaomi.patch
+
 # Set up build environment
 echo "===================================="
 echo "Setting up build environment..."
